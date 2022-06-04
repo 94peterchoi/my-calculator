@@ -32,9 +32,6 @@ public class CalcImpl implements Calculator{
         FormulaChange formulaChange = new FormulaChange();
         formulaChange.toPostfix(formula);
 
-
-
-
         formula.substring(i, i+1);
 
         String postfix = "23+78*";
