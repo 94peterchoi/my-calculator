@@ -1,6 +1,11 @@
 package calc;
 
+import java.util.List;
+
 public class CalcUtil {
+    public static final String[] operators = {"+", "-", "*", "/"};
+    public static final String[] OpsLevelOne = {"*", "/"};
+    public static final String[] OpsLevelTwo = {"+", "-"};
 
     public static boolean isNumber(String s) {
         if (Character.isDigit(s.charAt(0))) {
@@ -15,6 +20,5 @@ public class CalcUtil {
         }
         return false;
     }
-
 
 }
