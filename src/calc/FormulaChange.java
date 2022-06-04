@@ -34,7 +34,8 @@ public class FormulaChange {
 
         // 연산자 스택에 남아있는 연산자가 있을 시
         if (operators.size() > 0) {
-            for (int j=0; j<operators.size(); j++) {
+            int size = operators.size();
+            for (int j=0; j<size; j++) {
                 output.push(operators.pop());
             }
         }
@@ -50,18 +51,22 @@ public class FormulaChange {
         }
 
         if (operators.peek().equals("*") && op.equals("+")) {
-            for (int i=0; i<operators.size(); i++) {
+            int size = operators.size();
+            for (int i=0; i<size; i++) {
                 output.push(operators.pop());
             }
+            operators.push(op);
+            return;
         }
 
         if (operators.peek().equals(op)) {
             output.push(operators.pop());
+            operators.push(op);
+            return;
         }
 
+        operators.push(op);
+
     }
-
-
-
 
 }

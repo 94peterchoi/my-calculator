@@ -12,7 +12,8 @@ public class Main {
 //        System.out.print(result);
 
         FormulaChange formulaChange = new FormulaChange();
-        formulaChange.toPostfix("2*3+4*5");
+        formulaChange.toPostfix("2+3*4+5+6+7*8+9");
+//        formulaChange.toPostfix("2+3*4+5*6");
 
 
     }
