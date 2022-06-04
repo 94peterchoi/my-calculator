@@ -2,38 +2,40 @@ package calc;
 
 import java.util.*;
 
+/* 식변환 클래스 */
 public class FormulaChange {
     // 중위연산 -> 후위연산
     // 에러처리 필수!!
     Stack<String> output = new Stack<>();
     Stack<String> operators = new Stack<>();
-    String postfix = "";
+    String strNum = "";
 
     public String toPostfix(String formula) {
 
         int i = 0;
 
-        // 한자리 숫자는 괜찮은데 숫자가 2자리 이상일 때 처리로직 필요함 (흠 ..)
         while (i < formula.length()) {
             String letter = formula.substring(i, i + 1);
 
             if (CalcUtil.isNumber(letter)) {
-                output.push(letter);
+                strNum += letter;
             }
 
             if (CalcUtil.isOperator(letter)) {
+                output.push(strNum);
+                strNum = "";
                 checkOperator(letter);
             }
 
             i++;
         }
 
-        // 연산자 스택에 남아있는 연산자가 있을 시
-        if (operators.size() > 0) {
-            int size = operators.size();
-            for (int j = 0; j < size; j++) {
-                output.push(operators.pop());
-            }
+        // 남아있는 숫자와 연산자 처리
+        output.push(strNum);
+        int size = operators.size();
+
+        for (int j = 0; j < size; j++) {
+            output.push(operators.pop());
         }
 
         return "";
@@ -46,7 +48,7 @@ public class FormulaChange {
             return;
         }
 
-        if (CalcUtil.isOpLevelOne(operators.peek()) || CalcUtil.isOpLevelTwo(op)) {
+        if (CalcUtil.isOpLevelOne(operators.peek()) && CalcUtil.isOpLevelTwo(op)) {
             int size = operators.size();
             for (int i = 0; i < size; i++) {
                 output.push(operators.pop());
@@ -55,11 +57,12 @@ public class FormulaChange {
             return;
         }
 
-        if (operators.peek().equals(op)) {
+        if (CalcUtil.isOpsSameLevel(operators.peek(), op)) {
             output.push(operators.pop());
             operators.push(op);
             return;
         }
+
 
         operators.push(op);
 

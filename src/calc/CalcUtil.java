@@ -40,4 +40,14 @@ public class CalcUtil {
         return false;
     }
 
+    // 같은 레벨의 연산자인지 확인
+    public static boolean isOpsSameLevel(String op1, String op2) {
+        if (isOpLevelOne(op1) == isOpLevelOne(op2))
+            return true;
+        if (isOpLevelTwo(op1) == isOpLevelTwo(op2))
+            return true;
+
+        return false;
+    }
+
 }
