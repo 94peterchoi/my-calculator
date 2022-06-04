@@ -17,14 +17,13 @@ public class FormulaChange {
         while (i < formula.length()) {
             String letter = formula.substring(i, i + 1);
 
-            if (CalcUtil.isNumber(letter)) {
+            if (CalcUtil.isNumber(letter) || letter.equals(".")) {
                 strNum += letter;
             }
 
             if (CalcUtil.isOperator(letter)) {
-                output.push(strNum);
-                strNum = "";
-                checkOperator(letter);
+                processStrNum(strNum);
+                processStack(letter);
             }
 
             i++;
@@ -41,8 +40,19 @@ public class FormulaChange {
         return "";
     }
 
-    // 연산자 체크 로직 (체크 오퍼레이트가 과연 맞는 이름일까..? 이 로직이 하는 역할이 뭐지)
-    public void checkOperator(String op) {
+    // 문자열 형태의 숫자 처리 (정수, 실수)
+    public void processStrNum(String strNum) {
+        int decimalPointCnt = (int) strNum.chars().filter(c->c=='.').count();
+        if (decimalPointCnt > 1) {
+            // 에러 내뱉기
+            System.out.println("잘못된 숫자입니다. 다시 입력하세요");
+        }
+        output.push(strNum);
+        this.strNum = "";
+    }
+
+    // 연산자에 따른 스택 처리
+    public void processStack(String op) {
         if (operators.isEmpty()) {
             operators.push(op);
             return;
@@ -62,7 +72,6 @@ public class FormulaChange {
             operators.push(op);
             return;
         }
-
 
         operators.push(op);
 
