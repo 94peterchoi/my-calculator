@@ -1,6 +1,3 @@
-// 깃먼저 레포지토리 따고 중간중간 버전 푸시하기
-
-
 package calc;
 
 import java.util.Scanner;

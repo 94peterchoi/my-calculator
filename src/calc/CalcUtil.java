@@ -24,7 +24,7 @@ public class CalcUtil {
         return false;
     }
 
-    // 곱셈, 나눗셈
+    // 우선순위1: 곱셈, 나눗셈
     public static boolean isOpLevelOne(String operator) {
         if (Arrays.stream(OpsLevelOne).anyMatch(op -> op.equals(operator))) {
             return true;
@@ -32,7 +32,7 @@ public class CalcUtil {
         return false;
     }
 
-    // 덧셈, 뺄셈
+    // 우선순위2: 덧셈, 뺄셈
     public static boolean isOpLevelTwo(String operator) {
         if (Arrays.stream(OpsLevelTwo).anyMatch(op -> op.equals(operator))) {
             return true;
