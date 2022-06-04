@@ -8,4 +8,13 @@ public class CalcUtil {
         }
         return false;
     }
+
+    public static boolean isOperator(String operator) {
+        if (operator.equals("+") || operator.equals("-") || operator.equals("*") || operator.equals("/")) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
