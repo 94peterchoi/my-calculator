@@ -1,4 +1,4 @@
-package calc;
+package calc.service;
 
 import java.util.EmptyStackException;
 import java.util.Stack;

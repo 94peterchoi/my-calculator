@@ -1,4 +1,8 @@
-package calc;
+package calc.calculator;
+
+import calc.utility.CalcUtil;
+import calc.service.ExpressionConverter;
+import calc.service.Operation;
 
 import java.util.List;
 import java.util.Scanner;

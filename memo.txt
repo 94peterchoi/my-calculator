@@ -38,3 +38,5 @@
 - 계산기: Calculator[인터페이스], PostfixCalc
 - 서비스(비즈니스로직): Operation[연산담당], ExpressionConverter[식변환 담당]
 - 유틸리티: CalcUtil
+
+TODO: junit, 클래스다이어그램, 순서도, 발표자료

@@ -1,4 +1,6 @@
-package calc;
+package calc.service;
+
+import calc.utility.CalcUtil;
 
 import java.util.*;
 

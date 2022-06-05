@@ -1,13 +1,13 @@
-package calc;
+package calc.utility;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class CalcUtil {
-    public static final String[] operators = {"+", "-", "*", "/"};
-    public static final String[] OpsLevelOne = {"*", "/"};
-    public static final String[] OpsLevelTwo = {"+", "-"};
+    public static final String[] OPERATORS = {"+", "-", "*", "/"};
+    public static final String[] OPS_LEVEL_ONE = {"*", "/"};
+    public static final String[] OPS_LEVEL_TWO = {"+", "-"};
 
     // 숫자인지 확인 (하나의 문자열만 처리할 수 있음)
     public static boolean isNumber(String s) {
@@ -21,17 +21,17 @@ public class CalcUtil {
 
     // 연산자인지 확인
     public static boolean isOperator(String operator) {
-        return Arrays.stream(operators).anyMatch(op -> op.equals(operator));
+        return Arrays.stream(OPERATORS).anyMatch(op -> op.equals(operator));
     }
 
     // 연산자 우선순위1: 곱셈, 나눗셈
     public static boolean isOpLevelOne(String operator) {
-        return Arrays.stream(OpsLevelOne).anyMatch(op -> op.equals(operator));
+        return Arrays.stream(OPS_LEVEL_ONE).anyMatch(op -> op.equals(operator));
     }
 
     // 연산자 우선순위2: 덧셈, 뺄셈
     public static boolean isOpLevelTwo(String operator) {
-        return Arrays.stream(OpsLevelTwo).anyMatch(op -> op.equals(operator));
+        return Arrays.stream(OPS_LEVEL_TWO).anyMatch(op -> op.equals(operator));
     }
 
     // 같은 레벨의 연산자인지 확인
