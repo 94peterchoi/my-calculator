@@ -14,7 +14,11 @@ public class CalcImpl implements Calculator{
 
         userInput = scan.nextLine();
 
-        // 올바른 수식인지 검증하는 유효성검사 필요함 (메서드로 따로 빼야겠지)
+        // 중위연산식 유효성 검증
+        if (!ExpressionConverter.isValidFormula(userInput.trim().replaceAll(" ", ""))) {
+            System.out.println("수식이 잘못됐어요.");
+            System.exit(0);
+        }
 
         return userInput;
     }
@@ -30,11 +34,8 @@ public class CalcImpl implements Calculator{
         ExpressionConverter expressionConverter = new ExpressionConverter();
         List<String> postfix = expressionConverter.toPostfix(userFormula);
 
-
         while(i < postfix.size()) {
-
             String letter = postfix.get(i);
-
             // 괄호까지 처리할 수 있으면 좋겠지만
 
             // 숫자면 푸쉬
@@ -52,13 +53,10 @@ public class CalcImpl implements Calculator{
                 System.out.println("잘못된 연산자가 감지되었습니다. 계산기를 종료합니다.");
                 System.exit(0);
             }
-
             i++;
         }
-
         return numStack.pop();
     }
-
 
     @Override
     public void printResult(double result) {

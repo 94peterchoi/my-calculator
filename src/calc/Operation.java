@@ -6,6 +6,9 @@ public class Operation {
 
     public double operate(Stack<Double> numStack, String op) {
 
+        // 언더플로우
+        // 너무 큰 숫자
+
         double secondNum = numStack.pop();
         double firstNum = numStack.pop();
 
@@ -19,11 +22,6 @@ public class Operation {
             return firstNum * secondNum;
         }
         if (op.equals("/")) {
-            // 0으로 나눠졌을 때 에러처리 해야 함
-            if (secondNum == 0) {
-
-            }
-            // 아리스메틱 익셉션 내뱉기
             return firstNum / secondNum;
         }
 

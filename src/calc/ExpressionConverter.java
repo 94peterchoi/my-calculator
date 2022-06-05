@@ -67,13 +67,89 @@ public class ExpressionConverter {
         }
 
         if (CalcUtil.isOpsSameLevel(operators.peek(), op)) {
-            postfix.add(operators.pop());
-            operators.push(op);
+            postfix.add(op);
             return;
         }
 
         operators.push(op);
-
     }
+
+
+    // 중위연산식 유효성검사
+    public static boolean isValidFormula(String userFormula) {
+        /* 사칙연산 유효성검사 */
+        // 2 + 3
+        // 스택에 쌓는다
+        // 꺼내면서 교차되는지 확인한다 (첫번째랑 끝요소는 당연히 숫자여야 하고)
+        // makeInfixStack
+        // checkInfixValid
+        int i = 0;
+        String strNum = "";
+        List<String> infix = new ArrayList<>();
+
+        while (i < userFormula.length()) {
+            String letter = userFormula.substring(i, i+1);
+            if (CalcUtil.isNumber(letter) || letter.equals(".")) {
+                strNum += letter;
+                if (i == userFormula.length() - 1) {
+                    infix.add(strNum);
+                }
+                i++;
+                continue;
+            }
+            if (!CalcUtil.isOperator(letter)) {
+                System.out.println("가차없이 에러");
+                System.exit(0);
+            }
+            if (CalcUtil.isOperator(letter)) {
+                infix.add(strNum);
+                infix.add(letter);
+                strNum = "";
+            }
+            i++;
+        }
+
+        return checkInfixValid(infix);
+    }
+
+    private static boolean checkInfixValid(List<String> infix) {
+        int i = 0;
+
+        // 에러 (이항연산자 특성 상 짝수개로 나올 수 없음)
+        if (infix.size() % 2 == 0) {
+            System.out.println("수식 오류");
+            System.exit(0);
+        }
+
+        while(i < infix.size()) {
+            String letter = infix.get(i);
+            boolean isNum = false;
+            boolean isOp = false;
+
+            if (i % 2 == 0)
+                isNum = numberValidation(letter);
+            if (i % 2 == 1)
+                isOp = operatorValidation(letter);
+            if (!isNum && !isOp)
+                return false;
+
+            i++;
+        }
+
+        return true;
+    }
+
+    private static boolean numberValidation(String letter) {
+        if (!CalcUtil.isNumber(letter))
+            return false;
+        return true;
+    }
+
+    private static boolean operatorValidation(String letter) {
+        if (!CalcUtil.isOperator(letter))
+            return false;
+        return true;
+    }
+
 
 }
