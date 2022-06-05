@@ -5,6 +5,7 @@ public class Main {
 
         Calculator calc = new CalcImpl();
 
+        // 이 3개를 try catch로 감싸고
         String userFormula = calc.getInput();
         double result = calc.calculate(userFormula);
         calc.printResult(result);

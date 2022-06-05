@@ -14,12 +14,6 @@ public class CalcImpl implements Calculator{
 
         userInput = scan.nextLine();
 
-        // 중위연산식 유효성 검증
-        if (!ExpressionConverter.isValidFormula(userInput.trim().replaceAll(" ", ""))) {
-            System.out.println("수식이 잘못됐어요.");
-            System.exit(0);
-        }
-
         return userInput;
     }
 
@@ -32,7 +26,13 @@ public class CalcImpl implements Calculator{
 
         // 입력받은 (중위)식을 후위식으로 바꾼다
         ExpressionConverter expressionConverter = new ExpressionConverter();
-        List<String> postfix = expressionConverter.toPostfix(userFormula);
+        List<String> postfix = null;
+        try {
+            postfix = expressionConverter.toPostfix(userFormula);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            System.exit(0);
+        }
 
         while(i < postfix.size()) {
             String letter = postfix.get(i);
@@ -50,7 +50,7 @@ public class CalcImpl implements Calculator{
                 Operation operation = new Operation();
                 numStack.push(operation.operate(numStack, letter));
             } else {    // if에 부정문 걸어서 else를 안쓸 수는 있겠지만...
-                System.out.println("잘못된 연산자가 감지되었습니다. 계산기를 종료합니다.");
+                System.out.println("[ERROR] 수식 오류2");
                 System.exit(0);
             }
             i++;

@@ -12,7 +12,7 @@ public class CalcUtil {
 
     // 숫자인지 확인
     public static boolean isNumber(String s) {
-        if (Character.isDigit(s.charAt(0))) {
+        if (!s.equals("") && Character.isDigit(s.charAt(0))) {
             return true;
         }
         return false;
