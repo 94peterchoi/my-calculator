@@ -26,8 +26,8 @@ public class CalcImpl implements Calculator{
         int i = 0;
 
         // 입력받은 (중위)식을 후위식으로 바꾼다
-        FormulaChange formulaChange = new FormulaChange();
-        formulaChange.toPostfix(formula);
+        ExpressionConverter expressionConverter = new ExpressionConverter();
+        expressionConverter.toPostfix(formula);
 
         formula.substring(i, i+1);
 
