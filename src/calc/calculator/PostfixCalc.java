@@ -22,7 +22,7 @@ public class PostfixCalc implements Calculator{
             System.exit(0);
         }
 
-        return userInput;
+        return userInput.replaceAll(" ", "");
     }
 
     @Override
