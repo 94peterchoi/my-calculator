@@ -1,16 +1,22 @@
 package calc;
 
+import java.util.EmptyStackException;
 import java.util.Stack;
 
+/* 연산 클래스 */
 public class Operation {
 
-    public double operate(Stack<Double> numStack, String op) {
+    public double operate(Stack<Double> numStack, String op) throws Exception {
 
-        // 언더플로우
-        // 너무 큰 숫자
+        double firstNum = 0;
+        double secondNum = 0;
 
-        double secondNum = numStack.pop();
-        double firstNum = numStack.pop();
+        try {
+            secondNum = numStack.pop();
+            firstNum = numStack.pop();
+        } catch (EmptyStackException es) {
+            throw new Exception("[ERRPR] 수식 오류3: 산식 오류");
+        }
 
         if (op.equals("+")) {
             return firstNum + secondNum;
@@ -25,7 +31,6 @@ public class Operation {
             return firstNum / secondNum;
         }
 
-        // 아무것도 if문 안 타면 에러 내뱉기 (존재하지 않는 연산자)
         return 0;
     }
 }

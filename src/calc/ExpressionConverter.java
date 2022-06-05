@@ -4,7 +4,6 @@ import java.util.*;
 
 /* 식변환 클래스 */
 public class ExpressionConverter {
-    // 에러처리 필수!!
     List<String> postfix = new ArrayList<>();
     Stack<String> operators = new Stack<>();
     String strNum = "";
@@ -29,14 +28,16 @@ public class ExpressionConverter {
                 continue;
             }
 
-            // 위에 거 통과하지 못하는 애들은 에러 던지기
-            throw new Exception("[ERROR] 수식 오류1");
+            throw new Exception("[ERROR] 수식 오류1: 부적절한 문자");
         }
 
         // 남아있는 숫자와 연산자 처리
-        postfix.add(strNum);
-        int size = operators.size();
+        if (!strNum.equals("")) {
+            CalcUtil.isValidNumber(strNum);
+            postfix.add(strNum);
+        }
 
+        int size = operators.size();
         for (int j = 0; j < size; j++) {
             postfix.add(operators.pop());
         }
@@ -46,13 +47,11 @@ public class ExpressionConverter {
 
     // 문자열 형태의 숫자 처리 (정수, 실수)
     public void processStrNum(String strNum) {
-        int decimalPointCnt = (int) strNum.chars().filter(c->c=='.').count();
-        if (decimalPointCnt > 1) {
-            // 에러 내뱉기
-            System.out.println("잘못된 숫자형식입니다. 다시 입력하세요");
+        if (!strNum.equals("")) {
+            CalcUtil.isValidNumber(strNum);
+            postfix.add(strNum);
+            this.strNum = "";
         }
-        postfix.add(strNum);
-        this.strNum = "";
     }
 
     // 연산자에 따른 스택 처리
