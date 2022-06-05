@@ -4,8 +4,8 @@ public interface Calculator {
 
     String getInput();
 
-    double calculate(String formula);
+    double calculate(String userFormula);
 
-    void printResult();
+    void printResult(double result);
 
 }

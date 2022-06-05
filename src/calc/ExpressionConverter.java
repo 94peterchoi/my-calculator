@@ -44,7 +44,7 @@ public class ExpressionConverter {
         int decimalPointCnt = (int) strNum.chars().filter(c->c=='.').count();
         if (decimalPointCnt > 1) {
             // 에러 내뱉기
-            System.out.println("잘못된 숫자입니다. 다시 입력하세요");
+            System.out.println("잘못된 숫자형식입니다. 다시 입력하세요");
         }
         postfix.add(strNum);
         this.strNum = "";

@@ -1,5 +1,6 @@
 package calc;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
@@ -19,7 +20,7 @@ public class CalcImpl implements Calculator{
     }
 
     @Override
-    public double calculate(String formula) {
+    public double calculate(String userFormula) {
         double solution = 0;
         Stack<Double> numStack = new Stack<>();
 
@@ -27,20 +28,14 @@ public class CalcImpl implements Calculator{
 
         // 입력받은 (중위)식을 후위식으로 바꾼다
         ExpressionConverter expressionConverter = new ExpressionConverter();
-        expressionConverter.toPostfix(formula);
+        List<String> postfix = expressionConverter.toPostfix(userFormula);
 
-        formula.substring(i, i+1);
 
-        String postfix = "23+78*";
-        postfix = "237*+8+";   // 2+3*7+8
-        postfix = "23*78/+";   // 2*3 + 7/8===> AB*CD/+
+        while(i < postfix.size()) {
 
-        // ABC*+D+
-        while(i < postfix.length()) {
+            String letter = postfix.get(i);
 
-            String letter = postfix.substring(i, i+1);
-
-            // 괄호까지 처리할 수 있으면 좋을텐데
+            // 괄호까지 처리할 수 있으면 좋겠지만
 
             // 숫자면 푸쉬
             if (CalcUtil.isNumber(letter)) {
@@ -64,12 +59,16 @@ public class CalcImpl implements Calculator{
         return numStack.pop();
     }
 
+
     @Override
-    public void printResult() {
-        System.out.println("..");
+    public void printResult(double result) {
+        if (CalcUtil.isInteger(result)) {
+            System.out.println("연산결과는 " + (int)result + "입니다.");
+            return;
+        }
+
+        double res = Math.floor(result * 1000) / 1000.0;    // 소수점 세자리 아래로 버림
+        System.out.println("연산결과는 " + res + " 입니다.");
     }
-
-
-
 
 }
