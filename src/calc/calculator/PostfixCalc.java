@@ -8,7 +8,16 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.Stack;
 
+/* 후위연산 계산기 클래스 */
 public class PostfixCalc implements Calculator{
+
+    private ExpressionConverter converter;
+    private Operation operation;
+
+    public PostfixCalc() {
+        this.converter = new ExpressionConverter();
+        this.operation = new Operation();
+    }
 
     @Override
     public String getInput() {
@@ -31,8 +40,7 @@ public class PostfixCalc implements Calculator{
         List<String> postfix = null;
 
         // 입력받은 문자열을 후위식으로 바꾼다
-        ExpressionConverter expressionConverter = new ExpressionConverter();
-        postfix = expressionConverter.toPostfix(userFormula);
+        postfix = converter.toPostfix(userFormula);
 
         // 후위연산 수행
         int i = 0;
@@ -40,7 +48,6 @@ public class PostfixCalc implements Calculator{
             String letter = postfix.get(i);
 
             if (CalcUtil.isOperator(letter)) {
-                Operation operation = new Operation();
                 numStack.push(operation.operate(numStack, letter));
                 i++;
                 continue;

@@ -6,10 +6,10 @@ import java.util.Stack;
 /* 연산 클래스 */
 public class Operation {
 
-    public double operate(Stack<Double> numStack, String op) throws Exception {
+    double firstNum = 0;
+    double secondNum = 0;
 
-        double firstNum = 0;
-        double secondNum = 0;
+    public double operate(Stack<Double> numStack, String op) throws Exception {
 
         try {
             secondNum = numStack.pop();
