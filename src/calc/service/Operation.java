@@ -6,16 +6,16 @@ import java.util.Stack;
 /* 연산 클래스 */
 public class Operation {
 
-    private double firstNum = 0;
-    private double secondNum = 0;
-
     public double operate(Stack<Double> numStack, String op) throws Exception {
+
+        double firstNum;
+        double secondNum;
 
         try {
             secondNum = numStack.pop();
             firstNum = numStack.pop();
         } catch (EmptyStackException es) {
-            throw new Exception("[ERRPR] 수식 오류3: 산식 오류");
+            throw new Exception("[ERROR] 수식 오류3: 산식 오류");
         }
 
         if (op.equals("+")) {

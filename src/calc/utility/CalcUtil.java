@@ -1,8 +1,6 @@
 package calc.utility;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class CalcUtil {
     public static final String[] OPERATORS = {"+", "-", "*", "/"};
@@ -16,22 +14,22 @@ public class CalcUtil {
 
     // 실수 요소 확인
     private static boolean isRealNumber(Character ch) {
-        return Character.isDigit(ch) || ".".equals(ch);
+        return Character.isDigit(ch) || '.' == ch;
     }
 
     // 연산자인지 확인
     public static boolean isOperator(String operator) {
-        return Arrays.stream(OPERATORS).anyMatch(op -> op.equals(operator));
+        return Arrays.asList(OPERATORS).contains(operator);
     }
 
     // 연산자 우선순위1: 곱셈, 나눗셈
     public static boolean isOpLevelOne(String operator) {
-        return Arrays.stream(OPS_LEVEL_ONE).anyMatch(op -> op.equals(operator));
+        return Arrays.asList(OPS_LEVEL_ONE).contains(operator);
     }
 
     // 연산자 우선순위2: 덧셈, 뺄셈
     public static boolean isOpLevelTwo(String operator) {
-        return Arrays.stream(OPS_LEVEL_TWO).anyMatch(op -> op.equals(operator));
+        return Arrays.asList(OPS_LEVEL_TWO).contains(operator);
     }
 
     // 같은 레벨의 연산자인지 확인
@@ -47,7 +45,7 @@ public class CalcUtil {
     // 소수점 유효성검사
     public static boolean isValidNumber(String number) {
         try {
-            double d = Double.parseDouble(number);
+            Double.parseDouble(number);
             return true;
         } catch (NumberFormatException nf) {
             throw new NumberFormatException("[ERROR] 수식 오류2: 부적절한 소수점");

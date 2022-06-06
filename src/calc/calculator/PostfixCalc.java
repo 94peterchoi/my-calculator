@@ -11,8 +11,8 @@ import java.util.Stack;
 /* 후위연산 계산기 클래스 */
 public class PostfixCalc implements Calculator{
 
-    private ExpressionConverter converter;
-    private Operation operation;
+    private final ExpressionConverter converter;
+    private final Operation operation;
 
     public PostfixCalc() {
         this.converter = new ExpressionConverter();
@@ -37,7 +37,7 @@ public class PostfixCalc implements Calculator{
     @Override
     public double calculate(String userFormula) throws Exception {
         Stack<Double> numStack = new Stack<>();
-        List<String> postfix = null;
+        List<String> postfix;
 
         // 입력받은 문자열을 후위식으로 바꾼다
         postfix = converter.toPostfix(userFormula);

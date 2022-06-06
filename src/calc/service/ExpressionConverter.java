@@ -8,10 +8,10 @@ import java.util.*;
 public class ExpressionConverter {
     List<String> postfix = new ArrayList<>();
     Stack<String> operators = new Stack<>();
-    String strNum = "";
+    String strNum;
 
     public List<String> toPostfix(String formula) throws Exception {
-
+        strNum = "";
         int i = 0;
 
         while (i < formula.length()) {

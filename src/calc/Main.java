@@ -2,16 +2,14 @@ package calc;
 
 import calc.calculator.Calculator;
 import calc.calculator.PostfixCalc;
-import calc.utility.CalcUtil;
 
 public class Main {
     public static void main(String[] args) {
 
         Calculator postfixCalc = new PostfixCalc();
 
-        while (true) {
+        while (true)
             runCalc(postfixCalc);
-        }
 
         /* 테스트 */
 //        formulaChange.toPostfix("11*12*13+14-15/16*17+18/19+223");
