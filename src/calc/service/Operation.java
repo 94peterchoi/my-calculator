@@ -6,8 +6,8 @@ import java.util.Stack;
 /* 연산 클래스 */
 public class Operation {
 
-    double firstNum = 0;
-    double secondNum = 0;
+    private double firstNum = 0;
+    private double secondNum = 0;
 
     public double operate(Stack<Double> numStack, String op) throws Exception {
 
