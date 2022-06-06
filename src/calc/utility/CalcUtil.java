@@ -42,7 +42,7 @@ public class CalcUtil {
         return number == (int) number;
     }
 
-    // 소수점 유효성검사
+    // 소수 유효성검사
     public static boolean isValidNumber(String number) {
         try {
             Double.parseDouble(number);
