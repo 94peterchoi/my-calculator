@@ -11,9 +11,10 @@ public class ExpressionConverter {
     String strNum;
 
     public List<String> toPostfix(String formula) throws Exception {
-        strNum = "";
-        int i = 0;
 
+        this.clearVariables();  // 멤버변수 초기화
+
+        int i = 0;
         while (i < formula.length()) {
             String letter = formula.substring(i, i + 1);
 
@@ -25,7 +26,7 @@ public class ExpressionConverter {
 
             if (CalcUtil.isOperator(letter)) {
                 processStrNum(strNum);
-                processStack(letter);
+                processStackByOp(letter);
                 i++;
                 continue;
             }
@@ -48,7 +49,7 @@ public class ExpressionConverter {
     }
 
     // 문자열 형태의 숫자 처리 (정수, 실수)
-    public void processStrNum(String strNum) {
+    private void processStrNum(String strNum) {
         if (!strNum.equals("")) {
             CalcUtil.isValidNumber(strNum);
             postfix.add(strNum);
@@ -57,7 +58,7 @@ public class ExpressionConverter {
     }
 
     // 연산자에 따른 스택 처리
-    public void processStack(String op) {
+    private void processStackByOp(String op) {
         if (operators.isEmpty()) {
             operators.push(op);
             return;
@@ -78,6 +79,13 @@ public class ExpressionConverter {
         }
 
         operators.push(op);
+    }
+
+    // 변수 초기화
+    private void clearVariables() {
+        postfix.clear();
+        operators.clear();
+        strNum = "";
     }
 
 

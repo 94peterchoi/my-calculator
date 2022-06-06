@@ -4,7 +4,7 @@ public interface Calculator {
 
     String getInput();
 
-    double calculate(String userFormula) throws Exception;
+    double calculate(String userInput) throws Exception;
 
     void printResult(double result);
 

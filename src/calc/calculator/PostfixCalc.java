@@ -35,12 +35,12 @@ public class PostfixCalc implements Calculator{
     }
 
     @Override
-    public double calculate(String userFormula) throws Exception {
+    public double calculate(String userInput) throws Exception {
         Stack<Double> numStack = new Stack<>();
         List<String> postfix;
 
         // 입력받은 문자열을 후위식으로 바꾼다
-        postfix = converter.toPostfix(userFormula);
+        postfix = converter.toPostfix(userInput);
 
         // 후위연산 수행
         int i = 0;

@@ -23,8 +23,8 @@ public class Main {
 
     public static void runCalc(Calculator calc) {
         try {
-            String userFormula = calc.getInput();
-            double result = calc.calculate(userFormula);
+            String userInput = calc.getInput();
+            double result = calc.calculate(userInput);
             calc.printResult(result);
         } catch(Exception e) {
 //            e.printStackTrace();
