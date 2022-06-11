@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Converter {
 
-    List<?> convert(String userInput);
+    List<String> convert(String userInput) throws Exception;
 
 }

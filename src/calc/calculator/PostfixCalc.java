@@ -1,5 +1,7 @@
 package calc.calculator;
 
+import calc.service.Converter;
+import calc.service.PostfixConverter;
 import calc.utility.CalcUtil;
 import calc.service.ExpressionConverter;
 import calc.service.Operation;
@@ -40,7 +42,8 @@ public class PostfixCalc implements Calculator{
         List<String> postfix;
 
         // 입력받은 문자열을 후위식으로 바꾼다
-        postfix = converter.toPostfix(userInput);
+        Converter converter = new PostfixConverter();
+        postfix = converter.convert(userInput);
 
         // 후위연산 수행
         int i = 0;
