@@ -1,10 +1,7 @@
 package calc.calculator;
 
-import calc.service.Converter;
-import calc.service.PostfixConverter;
+import calc.service.*;
 import calc.utility.CalcUtil;
-import calc.service.ExpressionConverter;
-import calc.service.Operation;
 
 import java.util.List;
 import java.util.Scanner;
@@ -13,11 +10,12 @@ import java.util.Stack;
 /* 후위연산 계산기 클래스 */
 public class PostfixCalc implements Calculator{
 
-    private final ExpressionConverter converter;
+    private final Converter converter;
     private final Operation operation;
+    private static PostfixCalc postfixCalc;
 
-    public PostfixCalc() {
-        this.converter = new ExpressionConverter();
+    private PostfixCalc() {
+        this.converter = ConverterFactory.createPostfixConverter();
         this.operation = new Operation();
     }
 
@@ -42,7 +40,6 @@ public class PostfixCalc implements Calculator{
         List<String> postfix;
 
         // 입력받은 문자열을 후위식으로 바꾼다
-        Converter converter = new PostfixConverter();
         postfix = converter.convert(userInput);
 
         // 후위연산 수행
@@ -73,6 +70,14 @@ public class PostfixCalc implements Calculator{
 
         double res = Math.floor(result * 1000) / 1000.0;    // 소수점 세자리 아래로 버림
         System.out.println("연산결과는 " + res + " 입니다.");
+    }
+
+
+    public static Calculator getInstance() {
+        if (postfixCalc == null) {
+            postfixCalc = new PostfixCalc();
+        }
+        return postfixCalc;
     }
 
 }

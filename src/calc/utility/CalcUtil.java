@@ -12,7 +12,7 @@ public class CalcUtil {
         return !s.equals("") && isRealNumber(s.charAt(0));
     }
 
-    // 실수 요소 확인
+    // 실수 요소 확인 (숫자 or 소수점)
     private static boolean isRealNumber(Character ch) {
         return Character.isDigit(ch) || '.' == ch;
     }
